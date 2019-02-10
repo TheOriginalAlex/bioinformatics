@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-
-import sys
-
 def PatternCount(txt, pattern):
     count = 0
     iterLen = len(txt)-len(pattern)
@@ -10,6 +6,3 @@ def PatternCount(txt, pattern):
             count += 1
     return count
 
-with open(sys.argv[1]) as f:
-    parts = f.read().split('\n')
-    print(PatternCount(parts[0], parts[1]))
