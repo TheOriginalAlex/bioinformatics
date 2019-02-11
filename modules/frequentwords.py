@@ -1,15 +1,14 @@
 from . import patterncount
 
 def FrequentWords(txt, k):
-    patterns = []
-    counts = []
-    iterLen = len(txt)-k
+    counts = {}
+    iterLen = len(txt)-k+1
     for i in range(0, iterLen):
         pattern = txt[i:i+k]
-        counts.append(patterncount.PatternCount(txt, pattern))
-    maxCount = max(counts)
-    for i in range(0, iterLen):
-        if counts[i] == maxCount:
-            patterns.append(txt[i:i+k])
-    patterns = sorted(set(patterns))
-    return ' '.join(patterns)
+        count = patterncount.PatternCount(txt, pattern)
+        if count in counts:
+            counts[count].append(pattern)
+        else:
+            counts[count] = [pattern]
+    patterns = sorted(set(counts[max(counts)]))
+    return patterns
